@@ -34,6 +34,30 @@ scalarProduct :: Num a => [a] -> [a] -> a
 scalarProduct xs ys = sum [ x*y | (x, y) <- (zip xs ys)]
 
 --Exercise 8
+euclid :: Int -> Int -> Int
+euclid a b
+    |a == b = a
+    |a > b = euclid (div a b) b
+    |a < b = euclid (div b a) a
+
+
+--Exercise 9
+merge :: Ord a => [a] -> [a] -> [a]
+merge xs ys
+    | null xs = ys
+    | null ys = xs
+    | head xs > head ys = (head ys):(merge xs (tail ys))
+    | otherwise = (head xs):(merge ys (tail xs))
+
+halve :: [a] -> ([a],[a])
+halve xs = (take half xs, drop half xs)
+    where half = div (length xs) 2
+
+mergeSort :: Ord a => [a] -> [a]
+mergeSort [] = []
+mergeSort (x:[]) = [x]
+mergeSort xs = merge (mergeSort x1) (mergeSort x2)
+    where  (x1, x2) = (halve xs) 
 
 --Exercise A3
 --longestCommonSubsequence :: Eq a => [[a]] -> [a]
