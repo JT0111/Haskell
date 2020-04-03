@@ -37,8 +37,8 @@ scalarProduct xs ys = sum [ x*y | (x, y) <- (zip xs ys)]
 euclid :: Int -> Int -> Int
 euclid a b
     |a == b = a
-    |a > b = euclid (div a b) b
-    |a < b = euclid (div b a) a
+    |a > b = euclid (a - b) b
+    |a < b = euclid (b - a) a
 
 
 --Exercise 9
