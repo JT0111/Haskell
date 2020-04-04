@@ -1,23 +1,24 @@
-rightTriangles = [(a, b, c) |  a <- [1..10],  b <- [1..a], c <- [1..100], a^2 + b^2 == c^2, a + b > c ]
+rightTriangles = [(a, b, c) |  a <- [1..10],  b <- [1..a], c <- [1..100], a^2 + b^2 == c^2, a + b > c ] -- .. means that we take everything in between
 
-ifRight :: (Num a, Ord a) => (a, a, a) -> Bool
+ifRight :: (Num a, Ord a) => (a, a, a) -> Bool --not sure why the "Ord" is here, does it mean that not all "Num"s are orderable?
 ifRight (a, b, c) = if a*a + b*b == c*c && a + b > c then True else False
 
-lotsOfHearts = take 100(cycle "<3")
-sameAsAboveButAsASetOfStrings = replicate 50 "<3"
+--I have to check the type
+lotsOfHearts = take 100(cycle "<3") --cycle makes infinite numbers of copies, take takes a given number of first elements from list
+sameAsAboveButAsASetOfStrings = replicate 50 "<3" --this works just the same
 
 jts :: Integral a => [a] -> [[Char]]
-jts xs = [ if x < 10 then "J" else "T" | x <- xs, odd x] 
+jts xs = [ if x < 10 then "J" else "T" | x <- xs, odd x] --if..then...else syntax
 
 removeNonUppercase :: [Char] -> [Char]
-removeNonUppercase st = [ c | c <- st, elem c ['A'..'Z']] 
+removeNonUppercase st = [ c | c <- st, elem c ['A'..'Z']]  --elem x xs checks if x is in xs
  
 evenSubsetsMembers :: [[Int]] -> [[Int]]
-evenSubsetsMembers xxs = [ [ x | x <- xs, even x ] | xs <- xxs]
+evenSubsetsMembers xxs = [ [ x | x <- xs, even x ] | xs <- xxs] --nested list comprehension example 
 
-numbers = zip [1, 2, 3] ["one", "two", "three"]
+numbers = zip [1, 2, 3] ["one", "two", "three"] --zip puts together two lists dropping the last elements of the longer one
 
-increasedLength :: (Foldable t, Fractional a1) => t a2 -> a1
+increasedLength :: (Foldable t, Fractional a1) => t a2 -> a1 --not sure why it's "foldable", guess it's because there are more than one structures with length
 increasedLength xs = fromIntegral (length xs) + 3.2
 
 iflessthen :: (Ord a, Num a) => a -> String -- can be also [Char]
