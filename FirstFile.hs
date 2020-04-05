@@ -42,3 +42,7 @@ calcBmis xs = [bmi w h | (w, h) <- xs]
     where bmi weight height = weight / height ^ 2 -- thos function is just defined within a function so it can be re-written as:
 
 calcBmis' xs = [w/h^2 | (w, h) <- xs] --types are the same
+
+--function generating infinite sequence of fibonacci numbers using recursion
+--there is a simpler function that I'll find later
+fib = 1:1:(map (uncurry (+)) (zip fib (tail fib))) --uncarry (+) adds the zipped numbers so :: NUm a => [(a, a)] -> [a] (check it), not sure what map does
