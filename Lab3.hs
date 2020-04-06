@@ -10,9 +10,16 @@ square :: Int -> [(Int, Int)]
 square n = [(x, y) | x <- [0 .. n], y <- [0..n], x/=y ]
 
 --Exercise 3
+--my own solution using list comprehension 
 replicate' :: Int -> a -> [a]
 replicate' a x = [f n | n <- [1..a]]
     where f n = x
+
+--solution from the tutorial that uses recurencion
+replicate'' :: (Num i, Ord i) => i -> a -> [a]  -- Note: Num is not a subclass of Ord - check why
+replicate'' n x  
+    | n <= 0    = []  
+    | otherwise = x:replicate'' (n-1) x 
 
 --Exercise 4
 pyths :: Int -> [(Int,Int,Int)]
