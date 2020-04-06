@@ -46,3 +46,43 @@ calcBmis' xs = [w/h^2 | (w, h) <- xs] --types are the same
 --function generating infinite sequence of fibonacci numbers using recursion
 --there is a simpler function that I'll find later
 fib = 1:1:(map (uncurry (+)) (zip fib (tail fib))) --uncarry (+) adds the zipped numbers so :: NUm a => [(a, a)] -> [a] (check it), not sure what map does
+
+--simple function that can be rewritten with a carried function
+compareWithHundred :: (Num a, Ord a) => a -> Ordering  
+compareWithHundred x = compare 100 x  
+
+--carried function that does exactly the same thing
+compareWithHundred' :: (Num a, Ord a) => a -> Ordering --it has to be this type because of 100
+compareWithHundred' = compare 100  -- when we "add" the argument on the command line it would be the same as calling compare 100 
+
+isUpperAlphanum :: Char -> Bool  
+isUpperAlphanum = (`elem` ['A'..'Z']) --part in () must lack a parameter on one "end" and the argument is just inserted ther
+
+applyTwice :: (a -> a) -> a -> a  -- takes a function "(a -> a)" and a parameter "a" and returns a result of the same type as a
+applyTwice f x = f (f x)  -- given function is applied twice on x
+
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]  --f is a function of type (a->b->c) so neither the 2 parameters nor the result must be the same type
+zipWith' _ [] _ = [] --if any of the lists is empty return empty set
+zipWith' _ _ [] = []  
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys  --otherwise apply f in elements on coresponding positions and return to the result list
+
+flip' :: (a -> b -> c) -> (b -> a -> c)  --takes and returns a function, types of functions parameeters swaps but the return type stayes the same 
+flip' f y x = f x y  
+
+--map implementation
+map' :: (a -> b) -> [a] -> [b]  --takes function and a list as parameter and returns a new list
+map' _ [] = []  --emoty list is still emoty as the number of elements doesn't change
+map' f (x:xs) = f x : map f xs --[f x | x <- x:xs] would do the same thing
+
+
+filter' :: (a -> Bool) -> [a] -> [a]   
+filter' _ [] = []  
+filter' p (x:xs)   --p is usuallu in (), e.g. (>3)
+    | p x       = x : filter' p xs  --if the first element satisfies p it is added to the new list
+    | otherwise = filter' p xs  --otherwise it's not
+    --then recursively function checks 2nd, 3rd and next elements
+
+--example of filter:
+largestDivisible :: (Integral a) => a --there are no paramethers so there is just one a  
+largestDivisible = head (filter p [100000,99999..]) --[10000, 99999 ..] assures that the head is the largest
+    where p x = x `mod` 3829 == 0  --elements must be divisable by 3829
