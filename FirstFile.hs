@@ -93,3 +93,12 @@ firstWord = takeWhile (/=' ') --takes all elements before the first ' '
 flip'' :: (a -> b -> c) -> b -> a -> c --flip function using lambda expression, looking at notation below: f::(a -> b -> c), x :: b,  y :: a and final result :: c
 flip'' f = \x y -> f y x  --f is a function taking 2 parameters (x and y) that are also passed to "flip''"
 --'\' is used for lambda expression, everything between '\' and "->" is a parameter, after are results
+
+sum' :: (Num a) => [a] -> a --takes a list of numbers and returns a single one (e.g. folds the list to the single vale of its sum)
+sum' xs = foldl (\acc x -> acc + x) 0 xs  --"\acc x -> acc + x" means that the next 2 parameters will be summed,
+-- as acc is updated after each operation (because of foldl[eft]), it will just keep getting bigger until the list is empty 
+--foldl returns the acc value (e.g. the sum)
+
+sum'' :: (Num a) => [a] -> a --the same as above, just shorter because it uses a fact that functions can be carried 
+sum'' = foldl (+) 0  --sum'' takes some list, e.i. xs as parameter so it can be rewritten as: "sum'' xs = foldl (+) 0 xs"
+-- this is more similar to example above, the same rule applies to "(+)" - as (+) :: Num a => a -> a -> a it will be carried to the next parameters just as if it was "((+) acc x)"
