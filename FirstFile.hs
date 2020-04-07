@@ -116,3 +116,7 @@ currentMaximum = scanl1 (\acc x -> if x > acc then x else acc) --scan(l/r)( /1) 
 
 funnyFunction :: [(Int -> Int)] -> [Int]
 funnyFunction xs = map ($ 3) xs--maps all half-filled functions with a 3 so we get a "normal" list, "$" is a sign of function taking place, xs can be e.i. = [(4+), (10*), (^2), sqrt]
+
+--Function composition allows to ommit () as it's right-associative so "f . g x" is the same as (in math) f(g(x))
+oddSquareSum :: Integer  --random example
+oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]  --takes infinite list of numbers, maps them to it's square, filters the even ones out and stops when reaches 10000, then gets a sum
