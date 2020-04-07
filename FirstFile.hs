@@ -102,3 +102,17 @@ sum' xs = foldl (\acc x -> acc + x) 0 xs  --"\acc x -> acc + x" means that the n
 sum'' :: (Num a) => [a] -> a --the same as above, just shorter because it uses a fact that functions can be carried 
 sum'' = foldl (+) 0  --sum'' takes some list, e.i. xs as parameter so it can be rewritten as: "sum'' xs = foldl (+) 0 xs"
 -- this is more similar to example above, the same rule applies to "(+)" - as (+) :: Num a => a -> a -> a it will be carried to the next parameters just as if it was "((+) acc x)"
+
+map'' :: (a -> b) -> [a] -> [b]  --below: f :: (a -> b), xs :: [a] and result :: [b]
+map'' f xs = foldr (\x acc -> f x : acc) [] xs --apply the f function to every element of xs, starting from the last, and make it a head of acc
+--foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+--Soooo... everything is swapped, acc is (at first) [], and x is every element of xs starting from the last one
+
+maximum' :: (Ord a) => [a] -> a  
+maximum' = foldr1 (\x acc -> if x > acc then x else acc)  --example of foldr1 -> doesnt care about acc value, just takes the first checked elements' one
+
+currentMaximum :: (Num a, Ord a) => [a] -> [a]
+currentMaximum = scanl1 (\acc x -> if x > acc then x else acc) --scan(l/r)( /1) works like fold but gives a list of all acc states
+
+funnyFunction :: [(Int -> Int)] -> [Int]
+funnyFunction xs = map ($ 3) xs--maps all half-filled functions with a 3 so we get a "normal" list, "$" is a sign of function taking place, xs can be e.i. = [(4+), (10*), (^2), sqrt]
