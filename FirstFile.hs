@@ -86,3 +86,10 @@ filter' p (x:xs)   --p is usuallu in (), e.g. (>3)
 largestDivisible :: (Integral a) => a --there are no paramethers so there is just one a  
 largestDivisible = head (filter p [100000,99999..]) --[10000, 99999 ..] assures that the head is the largest
     where p x = x `mod` 3829 == 0  --elements must be divisable by 3829
+
+firstWord :: [Char] -> [Char]
+firstWord = takeWhile (/=' ') --takes all elements before the first ' '
+
+flip'' :: (a -> b -> c) -> b -> a -> c --flip function using lambda expression, looking at notation below: f::(a -> b -> c), x :: b,  y :: a and final result :: c
+flip'' f = \x y -> f y x  --f is a function taking 2 parameters (x and y) that are also passed to "flip''"
+--'\' is used for lambda expression, everything between '\' and "->" is a parameter, after are results
