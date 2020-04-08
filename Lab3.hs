@@ -67,7 +67,7 @@ mergeSort xs = merge (mergeSort x1) (mergeSort x2)
     where  (x1, x2) = (halve xs) 
 
 --Exercise A3
---longestCommonSubsequence :: Eq a => [[a]] -> [a]
---longestCommonSubsequence xs = [x | x <- xs]
+longestCommonSubsequence :: Eq a => [[a]] -> [a]
+longestCommonSubsequence xxs = [x | x <- xs] --noIdeaWhatToDoHereAndMySpacesDon'tWorkUHHHHHHHHHHHHHHHHH
 removeNonUppercase :: [Char] -> [Char]
 removeNonUppercase st = [ c | c <- st, elem c ['A'..'Z']] --u can base on this while creating a "real" solution (where you can divide and conquer...or not)
