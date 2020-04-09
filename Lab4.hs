@@ -8,5 +8,9 @@ any' :: (a -> Bool) -> [a] -> Bool
 any' f xs = foldr (\x acc -> if f x then True else acc) False xs
 
 --Select the initial elements from a list while they satisfy a predicate
-takeWhile' :: (a -> Bool) -> [a] -> [a]
-takeWhile'   
+--takeWhile' :: (a -> Bool) -> [a] -> [a]
+--takeWhile'   
+
+--Exercise 2
+dec2Int :: [Int] -> Int
+dec2Int xs = foldl (\acc x -> (10 * acc) + x) 0 xs
