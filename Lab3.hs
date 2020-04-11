@@ -1,3 +1,4 @@
+import Data.List (intersect)
 --Exercise 1
 exp' :: Int -> Int
 exp' n = sum [x^2 | x <- [0..n], mod x 2 == 1] + sum [x^3 | x <- [0..n], mod x 2 == 0] --there should be 100 accept n but I like it better
@@ -66,8 +67,11 @@ mergeSort (x:[]) = [x]
 mergeSort xs = merge (mergeSort x1) (mergeSort x2)
     where  (x1, x2) = (halve xs) 
 
+
 --Exercise A3
-longestCommonSubsequence :: Eq a => [[a]] -> [a]
-longestCommonSubsequence xxs = [x | x <- xs] --noIdeaWhatToDoHereAndMySpacesDon'tWorkUHHHHHHHHHHHHHHHHH
-removeNonUppercase :: [Char] -> [Char]
-removeNonUppercase st = [ c | c <- st, elem c ['A'..'Z']] --u can base on this while creating a "real" solution (where you can divide and conquer...or not)
+--longestCommonSubsequence :: Eq a => [[a]] -> [a]
+longestCommonSubsequence [] = []
+longestCommonSubsequence x:xxs 
+        | xxs == null = x
+        | tail xxs == null = intersect x (tail xxs)
+        | otherwise = intersect x (longestCommonSubsequence xxs)
