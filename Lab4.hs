@@ -17,4 +17,8 @@ dec2Int xs = foldl (\acc x -> (10 * acc) + x) 0 xs
 
 --Exercise 4
 
-int2bin xs = unfold (==1) h t x
+--int2bin :: Integer -> [Integer]
+int2bin x   
+        | x == 1 = [1]
+        | x == 0 = []
+        | otherwise = (mod x 2) : int2bin (div x 2) --doesn't work yet, you have to turn the list and ++ doesn't work (idk why)
