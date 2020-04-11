@@ -18,3 +18,12 @@ numUniques = length . nub  --'.' takes everything after it into () so it's the s
 --transpose a list of lists (treats it as a matrix)
 sumPolynomials :: (Num a) => [[a]] -> [a]
 sumPolynomials xxs = map sum $ transpose xxs --takes polynomials described as lists and produces a list of the sum-polynomial
+
+--NOTE - there are foldl' and foldl1' functions that work just as the "normal" ones but don't push accumulators on to the stack (no stack overflow risk)
+
+--concat - flattens list of list to just a list of elements, works also with nested lists (you have to call it multiple times), e.g:
+remove3nestingLevels = concat . concat . concat
+
+--iterate - creates an infinite liste with a given operation applied to the previous element:
+allPowersOfTwo = iterate (*2) 1
+
