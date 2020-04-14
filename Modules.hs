@@ -6,6 +6,8 @@ import Data.List --syntax for importing modules is "import name_of_module ([some
 import qualified Data.Map as M   --"qualified" means we need to type name of this module before every function from it, as M changes this name
 -- so, if we want to use "filter" from this module we would write "M.filter", "filter" would mean a function from "Prelude" module
 
+import FirstOwnModule --imports the module I created
+
 --more modules are here: https://downloads.haskell.org/~ghc/latest/docs/html/libraries/
 --library search: https://hoogle.haskell.org/
 
@@ -26,4 +28,5 @@ remove3nestingLevels = concat . concat . concat
 
 --iterate - creates an infinite liste with a given operation applied to the previous element:
 allPowersOfTwo = iterate (*2) 1
+
 
