@@ -47,3 +47,11 @@ selectionSort (x:[]) = [x]
 selectionSort xs = ys ++ selectionSort[x | x <- xs, x /= m]
     where   m = minimum xs
             ys = [y | y<-xs, y == m]
+
+data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday   
+           deriving (Eq, Ord, Show, Read, Bounded, Enum)
+           --Show and read alows it to be converted grom/to strings
+           --Eq enables "compoare"
+           --Enum means that this type has  predecessors and successors
+           --Bounded means that there is lowest and higher possible value (minBound, maxBound functions)
+           --Ord gives us option to call < > and sort
