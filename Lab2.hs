@@ -4,7 +4,12 @@
 last' :: [a] -> a
 last' (x:[]) = x
 last' x = last' (tail x) 
---alternatively: last' (_:xs) = last' xs
+
+--or: last' (_:xs) = last' xs
+
+last'' xs = foldl (\acc x -> x) 0 xs
+
+last''' xs = xs !! (length xs - 1)
 
 
 --Exercise 2
