@@ -1,8 +1,10 @@
+n'thElement n xs = xs !! n -- !! is used for indexing 
+
 rightTriangles = [(a, b, c) |  a <- [1..10],  b <- [1..a], c <- [1..100], a^2 + b^2 == c^2, a + b > c ] -- .. means that we take everything in between
 
 --Declaration wit a type definicion
 type Side = Int
-ifRight :: (Side, Side, Side) -> Bool --not sure why the "Ord" is here, does it mean that not all "Num"s are orderable?
+ifRight :: (Side, Side, Side) -> Bool 
 ifRight (a, b, c) = if a*a + b*b == c*c && a + b > c then True else False
 
 --I have to check the type
