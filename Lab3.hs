@@ -1,4 +1,3 @@
-import Data.List (intersect)
 --Exercise 1
 exp' :: Int -> Int
 exp' n = sum [x^2 | x <- [0..n], mod x 2 == 1] + sum [x^3 | x <- [0..n], mod x 2 == 0] --there should be 100 accept n but I like it better
@@ -69,9 +68,8 @@ mergeSort xs = merge (mergeSort x1) (mergeSort x2)
 
 
 --Exercise A3
+intersect xs ys = [x | x <- xs, elem x ys]
 --longestCommonSubsequence :: Eq a => [[a]] -> [a]
 longestCommonSubsequence [] = []
-longestCommonSubsequence x:xxs 
-        | xxs == null = x
-        | tail xxs == null = intersect x (tail xxs)
-        | otherwise = intersect x (longestCommonSubsequence xxs)
+longestCommonSubsequence x:[] = x
+longestCommonSubsequence xs = foldl (\acc x -> intersect acc x) (head xs) (tail xs)
